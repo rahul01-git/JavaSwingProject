@@ -28,7 +28,7 @@ public class Puzzle extends Component implements MouseListener, ActionListener {
     JButton shuffle = new JButton("Shuffle");
     BufferedImage bufferedImage; // = ImageIO.read(new File("C:\\Game_Project\\Game_Puzzle\\src\\image.jpg"));
 
-   // int rows, cols;
+    // int rows, cols;
 
     ArrayList<JLabel> labelList = new ArrayList<JLabel>();
     JLabel lastLabel = null;
@@ -63,15 +63,15 @@ public class Puzzle extends Component implements MouseListener, ActionListener {
 
 
 
-          int puzzlePanel_height = bufferedImage.getHeight();
-          int puzzlePanel_width = bufferedImage.getWidth();
+        int puzzlePanel_height = bufferedImage.getHeight();
+        int puzzlePanel_width = bufferedImage.getWidth();
 
         int subImage_width = puzzlePanel_width/cols;
         int subImage_height = puzzlePanel_height/rows;
 
 
         int currentImage = 0;
-         puzzlePanel = new JPanel(new GridLayout(rows, cols));
+        puzzlePanel = new JPanel(new GridLayout(rows, cols));
         puzzlePanel.setBounds(60, 60, puzzlePanel_width, puzzlePanel_height);
         puzzlePanel.setBorder(BorderFactory.createEmptyBorder(6, 6, 6, 6));
 
@@ -154,7 +154,7 @@ public class Puzzle extends Component implements MouseListener, ActionListener {
             JLabel label = labelList.get(i);
 
 
-        //label.addKeyListener(this);
+            //label.addKeyListener(this);
             label.requestFocus();
 
             label.addMouseListener(this);
@@ -183,13 +183,17 @@ public class Puzzle extends Component implements MouseListener, ActionListener {
             }
             puzzlePanel.revalidate();
             puzzlePanel.repaint();
-            checkWin(indexToRemove);
+            // checkWin(indexToRemove);
         }
+        // checkWin(inde);
     }
+
+    private boolean puzzleSolved = false;
 
     public void checkWin(int removedIndex) {
         boolean solved = true;
 
+        // Check if all pieces are in their original position
         for (int i = 0; i < labelList.size() - 1; i++) {
             if (i == removedIndex) {
                 continue;
@@ -204,8 +208,7 @@ public class Puzzle extends Component implements MouseListener, ActionListener {
                         solved = false;
                         break;
                     }
-                }
-                catch (Exception abc){
+                } catch (Exception abc) {
                     System.out.println("error");
                 }
             } else {
@@ -216,19 +219,16 @@ public class Puzzle extends Component implements MouseListener, ActionListener {
 
         if (solved) {
             JOptionPane.showMessageDialog(jFrame, "You win!");
-
-            Timer timer = new Timer(2000, (e) -> {
-                jFrame.dispose(); // Close the Puzzle frame
-                MainMenu.main(new String[]{});
-            });
-            timer.setRepeats(false); // Only run the timer once
-            timer.start();
+            puzzleSolved = true;
+        /* Timer timer = new Timer(2000, (e) -> {
+            jFrame.dispose(); // Close the Puzzle frame
+            MainMenu.main(new String[]{});
+        });
+        timer.setRepeats(false); // Only run the timer once
+        timer.start();*/
         }
     }
 
-
-
-    @Override
     public void mouseClicked(MouseEvent e) {
         JLabel clickedLabel = (JLabel) e.getSource();
         int clickedIndex = labelList.indexOf(clickedLabel);
@@ -239,16 +239,30 @@ public class Puzzle extends Component implements MouseListener, ActionListener {
         int emptyRow = emptyIndex / cols;
         int emptyCol = emptyIndex % cols;
 
-        if ((clickedRow == emptyRow && Math.abs(clickedCol - emptyCol) == 1) ||
-                (clickedCol == emptyCol && Math.abs(clickedRow - emptyRow) == 1)) {
+        if (!puzzleSolved && ((clickedRow == emptyRow && Math.abs(clickedCol - emptyCol) == 1) ||
+                (clickedCol == emptyCol && Math.abs(clickedRow - emptyRow) == 1))) {
             // Swap the subImages
             ImageIcon tempIcon = (ImageIcon) emptyLabel.getIcon();
             emptyLabel.setIcon(clickedLabel.getIcon());
             clickedLabel.setIcon(tempIcon);
             emptyLabel = clickedLabel;
+
+            checkWin(clickedIndex);
+        } else if (puzzleSolved) {
+            //JOptionPane.showMessageDialog(jFrame, "Congratulations! You solved the puzzle.");
+
+            // Reset the puzzleSolved flag
+            puzzleSolved = false;
+
+            // Shuffle the puzzle pieces
+            //  Shuffle();
+
+            // Update the UI
+            revalidate();
+            repaint();
         }
-        checkWin(clickedIndex);
     }
+
 
 
     @Override
