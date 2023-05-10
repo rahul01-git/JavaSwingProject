@@ -220,12 +220,11 @@ public class Puzzle extends Component implements MouseListener, ActionListener {
         if (solved) {
             JOptionPane.showMessageDialog(jFrame, "You win!");
             puzzleSolved = true;
-        /* Timer timer = new Timer(2000, (e) -> {
-            jFrame.dispose(); // Close the Puzzle frame
-            MainMenu.main(new String[]{});
-        });
-        timer.setRepeats(false); // Only run the timer once
-        timer.start();*/
+            SwingUtilities.invokeLater(() -> {
+                jFrame.dispose(); // Close the CirclePackingAnimation frame
+
+                MainMenu.main(new String[]{});
+            });
         }
     }
 

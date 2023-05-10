@@ -57,6 +57,7 @@ public class MainMenu extends JFrame implements ActionListener {
 
     private void runCirclePacking() {
         SwingUtilities.invokeLater(() -> {
+            this.dispose();
             CirclePacking.Main.main(new String[]{});
         });
     }
@@ -64,6 +65,7 @@ public class MainMenu extends JFrame implements ActionListener {
     private void runPuzzle() throws IOException {
         SwingUtilities.invokeLater(() -> {
             try {
+                this.dispose();
                 PuzzleJava.Main.main(new String[]{});
             } catch (IOException e) {
                 e.printStackTrace();

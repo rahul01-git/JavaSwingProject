@@ -31,17 +31,19 @@ public class CirclePackingAnimation extends JPanel {
 
     public CirclePackingAnimation() {
         setBackground(Color.BLACK);
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter  filter = new FileNameExtensionFilter("Image Files", "jpg", "jpeg", "png", "gif");
-        fileChooser.setFileFilter(filter);
-        int result = fileChooser.showOpenDialog(this);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            try {
-                BufferedImage tempImage = ImageIO.read(selectedFile);
-                image = resizeImage(tempImage, 800, 600);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error loading image: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        while (image == null){
+            JFileChooser fileChooser = new JFileChooser();
+            FileNameExtensionFilter  filter = new FileNameExtensionFilter("Image Files", "jpg", "jpeg", "png", "gif");
+            fileChooser.setFileFilter(filter);
+            int result = fileChooser.showOpenDialog(this);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
+                try {
+                    BufferedImage tempImage = ImageIO.read(selectedFile);
+                    image = resizeImage(tempImage, 800, 600);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Error loading image: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
         backgroundMusic.playMusic();

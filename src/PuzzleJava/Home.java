@@ -13,6 +13,7 @@ public class Home implements ActionListener {
     JButton medium = new JButton("Medium Level");
     JButton hard = new JButton("Hard Level");
     JLabel label = new JLabel("Puzzle Game");
+    File img;
 
     Home ()
     {
@@ -51,9 +52,11 @@ public class Home implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == easy) {
             int row = 2, col = 2;
-            JFileChooser chooser = new JFileChooser();
-            chooser.showOpenDialog(null);
-            File img = chooser.getSelectedFile();
+            while (img==null){
+                JFileChooser chooser = new JFileChooser();
+                chooser.showOpenDialog(null);
+                img = chooser.getSelectedFile();
+            }
             frame.dispose();
             try {
                 Puzzle puzzle = new Puzzle(row,col,img);
@@ -66,9 +69,11 @@ public class Home implements ActionListener {
 
         if (e.getSource() == medium) {
             int row = 3, col = 3;
-            JFileChooser chooser = new JFileChooser();
-            chooser.showOpenDialog(null);
-            File img = chooser.getSelectedFile();
+            while (img==null){
+                JFileChooser chooser = new JFileChooser();
+                chooser.showOpenDialog(null);
+                img = chooser.getSelectedFile();
+            }
             frame.dispose();
             try {
                 Puzzle puzzle = new Puzzle(row,col,img);
@@ -80,9 +85,11 @@ public class Home implements ActionListener {
 
         if (e.getSource() == hard) {
             int row = 4, col = 4;
-            JFileChooser chooser = new JFileChooser();
-            chooser.showOpenDialog(null);
-            File img = chooser.getSelectedFile();
+            while (img==null){
+                JFileChooser chooser = new JFileChooser();
+                chooser.showOpenDialog(null);
+                img = chooser.getSelectedFile();
+            }
             frame.dispose();
             try {
                 Puzzle puzzle = new Puzzle(row,col,img);
