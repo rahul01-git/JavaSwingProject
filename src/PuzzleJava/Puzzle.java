@@ -46,15 +46,16 @@ public class Puzzle extends Component implements MouseListener, ActionListener {
         //jFrame.setLocation(5,10);
         jFrame.setLayout(null);
 
-
+        BufferedImage tempImage;
         bufferedImage = ImageIO.read(imageFile);
 
 
 
 
         bufferedImage = resizeImage(bufferedImage, 600, 600);
+        tempImage = resizeImage(bufferedImage,500,500);
 
-        imageIcon = new ImageIcon(bufferedImage);
+        imageIcon = new ImageIcon(tempImage);
         jFrame.setSize(bufferedImage.getWidth()*2+200, bufferedImage.getHeight()+200);
 
         this.rows = rows;
@@ -79,16 +80,16 @@ public class Puzzle extends Component implements MouseListener, ActionListener {
 
 
 
-        label.setForeground(Color.RED);
-        label.setBounds(150, 10, 300, 60);
-        label.setFont(new Font("Arial", Font.BOLD, 45));
+        label.setForeground(Color.BLACK);
+        label.setBounds(480, 5, 300, 60);
+        label.setFont(new Font("Arial", Font.BOLD, 40));
 
         originalImage.setIcon(imageIcon);
         originalImage.setBounds(puzzlePanel_width + 150, 60, puzzlePanel_width, puzzlePanel_height);
 
-        shuffle.setBounds(puzzlePanel_width / 2 , 700, 200, 30);
-        shuffle.setForeground(Color.YELLOW);
-        shuffle.setBackground(Color.red);
+        shuffle.setBounds(500 , 700, 200, 40);
+        shuffle.setForeground(Color.white);
+        shuffle.setBackground(Color.black);
         shuffle.setFocusable(false);
         shuffle.setFont(new Font("Arial", Font.BOLD, 20));
 

@@ -21,10 +21,19 @@ public class MainMenu extends JFrame implements ActionListener {
         // Create the label
         titleLabel = new JLabel("Choose Project");
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial",Font.BOLD,30));
 
         // Create buttons
         circlePackingButton = new JButton("Circle Packing");
+        circlePackingButton.setFocusable(false);
+        circlePackingButton.setBackground(Color.BLACK);
+        circlePackingButton.setForeground(Color.white);
+        circlePackingButton.setFont(new Font("Arial",Font.BOLD,20));
         puzzleButton = new JButton("Puzzle");
+        puzzleButton.setFocusable(false);
+        puzzleButton.setBackground(Color.BLACK);
+        puzzleButton.setForeground(Color.white);
+        puzzleButton.setFont(new Font("Arial",Font.BOLD,20));
 
         // Add action listeners
         circlePackingButton.addActionListener(this);

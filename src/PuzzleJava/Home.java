@@ -9,22 +9,33 @@ import java.io.IOException;
 
 public class Home implements ActionListener {
     JFrame frame = new JFrame();
-    JButton easy = new JButton("Easy Level");
-    JButton medium = new JButton("Medium Level");
-    JButton hard = new JButton("Hard Level");
+    JButton easy = new JButton("Easy");
+    JButton medium = new JButton("Medium");
+    JButton hard = new JButton("Hard");
     JLabel label = new JLabel("Puzzle Game");
 
     Home ()
     {
-        frame.setSize(500,400);
+        frame.setSize(400,300);
         frame.setResizable(false);
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        easy.setBounds(160,100,130,30);
-        medium.setBounds(160,150,130,30);
-        hard.setBounds(160,200,130,30);
+        easy.setBounds(120,70,150,40);
+        easy.setBackground(Color.black);
+        easy.setForeground(Color.white);
+        easy.setFont(new Font("Arial",Font.BOLD,19));
+
+        medium.setBounds(120,120,150,40);
+        medium.setBackground(Color.black);
+        medium.setForeground(Color.white);
+        medium.setFont(new Font("Arial",Font.BOLD,19));
+
+        hard.setBounds(120,170,150,40);
+        hard.setForeground(Color.white);
+        hard.setBackground(Color.black);
+        hard.setFont(new Font("Arial",Font.BOLD,19));
 
         easy.setFocusable(false);
         medium.setFocusable(false);
@@ -34,9 +45,9 @@ public class Home implements ActionListener {
         medium.addActionListener(this);
         hard.addActionListener(this);
 
-        label.setBounds(120,10,320,30);
+        label.setBounds(90,10,320,30);
         label.setFont(new Font("Arial",Font.BOLD,35));
-        label.setForeground(Color.RED);
+        label.setForeground(Color.BLACK);
 
 
 
